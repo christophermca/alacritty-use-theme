@@ -1,52 +1,24 @@
-# This is an example PKGBUILD file. Use this as a start to creating your own,
-# and remove these comments. For more information, see 'man PKGBUILD'.
-# NOTE: Please fill out the license field for your package! If it is unknown,
-# then please put 'unknown'.
-
-# Maintainer: Your Name <youremail@domain.com>
-pkgname=alacritty-use-theme
+# Maintainer: Christopher McAdams <mca.christopher@gmail.com>
+pkgname='alacritty-use-theme'
 pkgver=VERSION
 pkgrel=1
-epoch=
-pkgdesc="A small utility script to switch the selected theme used by alacritty terminal"
-arch=(any)
-url=""
+pkgdesc="Small utility to switch the selected theme used by alacritty terminal."
+arch=('x86_64')
+url="https://github.com/christophermca/alacritty-use-theme"
 license=('GPL')
-groups=()
-depends=()
-makedepends=()
-checkdepends=()
-optdepends=()
-provides=()
-conflicts=()
-replaces=()
-backup=()
-options=()
-install=
-changelog=
-source=("$pkgname-$pkgver.tar.gz"
-        "$pkgname-$pkgver.patch")
-noextract=()
-sha256sums=()
-validpgpkeys=()
+depends=('alacritty')
+makedepends=('git')
+source=("$pkgname::git://github.com/christophermca/alacritty-use-theme.git")
+md5sums=('SKIP')
 
-prepare() {
-	cd "$pkgname-$pkgver"
-	patch -p1 -i "$srcdir/$pkgname-$pkgver.patch"
-}
-
-build() {
-	cd "$pkgname-$pkgver"
-	./configure --prefix=/usr
-	make
-}
-
-check() {
-	cd "$pkgname-$pkgver"
-	make -k check
+pkgver() {
+  cd "$pkgname"
+  printf "r%s.%s" "$(git rev-list --count HEAD)" "$(git rev-parse --short=7 HEAD)"
 }
 
 package() {
-	cd "$pkgname-$pkgver"
-	make DESTDIR="$pkgdir/" install
+  cd "$pkgname"
+	install -Dm755 ./.local/alacritty "$pkgdir/usr/local/alacritty/"
+  install -Dm755 ./.local/share/alacritty "$pkgdir/usr/local/share/alacritty"
+
 }
