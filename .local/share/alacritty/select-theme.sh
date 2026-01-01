@@ -56,8 +56,7 @@ alacritty-use-theme() {
     ln -sf ${scriptDir}/selected.toml.DEFAULT ${alacrittyDir}/themes/selected.toml
   fi
 
-  touch -m ${alacrittyDir}/alacritty.toml
-  echo "test"
+  touch -m ${alacrittyDir}/alacritty.toml #hack; Update files modify date
 }
 
 export -f alacritty-use-theme
