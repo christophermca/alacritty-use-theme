@@ -5,8 +5,9 @@
 # Updates Alacritty with alacritty-use-theme
 ###
 
-if [[ -f $HOME/.local/share/alacritty/select-theme.sh ]]; then
- source $HOME/.local/share/alacritty/select-theme.sh
+if [[ -f /usr/local/alacritty/select-theme.sh ]]; then
+ source /usr/local/alacritty/select-theme.sh
+
 fi
 
 interface="org.freedesktop.portal.Settings"
