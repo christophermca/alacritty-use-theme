@@ -20,7 +20,7 @@
 
 # TODO What if we switched this to append an import statement that includes a link to the theme.
 alacritty-use-theme() {
-  local scriptDir=$HOME/.local/share/alacritty
+  local scriptDir=/usr/local/bin/alacritty
 
   local themeName;
   local dayNight;
@@ -59,12 +59,12 @@ alacritty-use-theme() {
   touch -m ${alacrittyDir}/alacritty.toml #hack; Update files modify date
 }
 
-export -f alacritty-use-theme
-
 # Legacy API
 configure-alacritty() {
  notify-send 'CALL to legacy alacritty configuration fn'
  alacritty-use-theme "$@"
 }
 
+export -f alacritty-use-theme
 export -f configure-alacritty
+
