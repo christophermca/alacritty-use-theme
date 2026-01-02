@@ -1,6 +1,6 @@
 # Maintainer: Christopher McAdams <mca.christopher@gmail.com>
-pkgname=alacritty-use-theme
-pkgver=r6.8d7caf0
+pkgname='alacritty-use-theme'
+pkgver=r11.9a590c7
 pkgrel=1
 pkgdesc="Small utility to switch the selected theme used by alacritty terminal."
 arch=('x86_64')
@@ -18,7 +18,6 @@ pkgver() {
 
 package() {
   cd "$pkgname"
-	install -Dm755 $srcdir/$pkgname/.local/alacritty/bin/toggle-mode-on-signal.sh "$pkgdir/usr/local/alacritty/bin/toggle-mode-on-signal.sh"
-  install -Dm755 $srcdir/$pkgname/.local/share/alacritty/select-theme.sh "$pkgdir/usr/local/share/alacritty/select-theme.sh"
-  install -Dm755 $srcdir/$pkgname/.local/share/alacritty/selected.toml.DEFAULT "$pkgdir/usr/local/share/alacritty/selected.toml.DEFAULT"
+  install -Dm755 $srcdir/$pkgname/.local/share/alacritty/use-theme.sh "$pkgdir/usr/local/bin/alacritty/use-theme.sh"
+  install -Dm755 $srcdir/$pkgname/.local/share/alacritty/selected.toml.DEFAULT "$pkgdir/usr/share/alacritty/selected.toml.DEFAULT"
 }
