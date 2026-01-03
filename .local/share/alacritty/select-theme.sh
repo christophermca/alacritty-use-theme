@@ -59,12 +59,4 @@ alacritty-use-theme() {
   touch -m ${alacrittyDir}/alacritty.toml #hack; Update files modify date
 }
 
-# Legacy API
-configure-alacritty() {
- notify-send 'CALL to legacy alacritty configuration fn'
- alacritty-use-theme "$@"
-}
-
-export -f alacritty-use-theme
-export -f configure-alacritty
-
+alacritty-use-theme "$@"

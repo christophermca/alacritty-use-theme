@@ -18,6 +18,6 @@ pkgver() {
 
 package() {
   cd "$pkgname"
-  install -Dm755 $srcdir/$pkgname/.local/share/alacritty/select-theme.sh "$pkgdir/usr/local/share/alacritty/select-theme.sh"
-  install -Dm755 $srcdir/$pkgname/.local/share/alacritty/selected.toml.DEFAULT "$pkgdir/usr/local/share/alacritty/selected.toml.DEFAULT"
+  install -Dm755 $srcdir/$pkgname/.local/share/alacritty/select-theme.sh "$pkgdir/usr/local/bin/alacritty/select-theme.sh"
+  install -Dm755 $srcdir/$pkgname/.local/share/alacritty/selected.toml.DEFAULT "$pkgdir/usr/local/bin/alacritty/selected.toml.DEFAULT"
 }
