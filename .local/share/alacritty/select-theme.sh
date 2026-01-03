@@ -20,7 +20,7 @@
 
 # TODO What if we switched this to append an import statement that includes a link to the theme.
 alacritty-use-theme() {
-  local scriptDir=/usr/local/bin/alacritty
+  local scriptDir=/usr/share/alacritty
 
   local themeName;
   local dayNight;
