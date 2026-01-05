@@ -23,7 +23,7 @@ alacritty-use-theme() {
   local scriptDir=/usr/share/alacritty
 
   local themeName;
-  local dayNight;
+  local userInput;
 
   local alacrittyDir=$HOME/.config/alacritty
 
@@ -36,10 +36,12 @@ alacritty-use-theme() {
   # Set the mood ;)
   # nan na-nan -- ba nan-na nan -- nan-na nan
   if (( $# == 1 )); then
-    dayNight=$1
+    userInput=$1
   fi
 
-  case ${dayNight} in
+
+  # converts userInput to themeName
+  case ${userInput} in
     "night")
       # if not set, alacritty will use its default theme :: Tomorrow-night mixed
       # with Tomorrow-night-bright
@@ -50,14 +52,22 @@ alacritty-use-theme() {
       ;;
   esac
 
-  if [ $themeName ];  then
+  ###
+  # **IF** $themeName is set to a non-zero value (not an empty string, null, or undefined)
+  # **ELSE IF** the userInput is a theme in the themes folder
+  # **OTHERWISE** use the default theme
+  ###
+
+  if [ -n "$themeName" ];  then
     ln -sf ${alacrittyDir}/themes/themes/${themeName}.toml ${alacrittyDir}/themes/selected.toml
+  elif [ -f ${alacrittyDir}/themes/themes/${userInput}.toml ]; then
+    ln -sf ${alacrittyDir}/themes/themes/${userInput}.toml ${alacrittyDir}/themes/selected.toml
   else
     ln -sf ${scriptDir}/selected.toml.DEFAULT ${alacrittyDir}/themes/selected.toml
   fi
 
+
   touch -m ${alacrittyDir}/alacritty.toml #hack; Update files modify date
 }
-export -f alacritty-use-theme
 
-alacritty-use-theme "$@"
+export -f alacritty-use-theme

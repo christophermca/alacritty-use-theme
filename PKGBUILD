@@ -1,6 +1,6 @@
 # Maintainer: Christopher McAdams <mca.christopher@gmail.com>
 pkgname='alacritty-use-theme'
-pkgver=r11.9a590c7
+pkgver=r14.3915a00
 pkgrel=1
 pkgdesc="Small utility to switch the selected theme used by alacritty terminal."
 arch=('x86_64')
