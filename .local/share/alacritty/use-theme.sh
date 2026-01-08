@@ -40,7 +40,7 @@ alacritty-use-theme() {
   fi
 
   #check aliases
-  eval $(yq -o=shell '.' .config/alacritty/themes/aliases.toml)
+  eval $(yq -o=shell '.' $HOME/.config/alacritty/themes/aliases.toml)
   prefix="aliases_"
   lookup="${prefix}${userInput}";
   [ -v $lookup ] && themeName="${!lookup}"
