@@ -20,18 +20,12 @@
 
 # TODO What if we switched this to append an import statement that includes a link to the theme.
 alacritty-use-theme() {
-  local scriptDir=/usr/share/alacritty
+  local scriptDir=/usr/share/alacritty-use-theme
 
   local themeName;
   local userInput;
 
   local alacrittyDir=$HOME/.config/alacritty
-
-  #This function assumes this user will are use the default filename for the configfile eg(`alacritty.toml`)
-  local configfile=${alacrittyDir}/alacritty.toml
-
-  local dayTheme=$(cat ${alacrittyDir}/themes/aliases.toml | grep -oP '(?<=day = ")[a-z-]+')
-  local nightTheme=$(cat ${alacrittyDir}/themes/aliases.toml | grep -oP '(?<=night = ")[a-z-]+')
 
   # Set the mood ;)
   # nan na-nan -- ba nan-na nan -- nan-na nan
@@ -40,7 +34,8 @@ alacritty-use-theme() {
   fi
 
   #check aliases
-  eval $(yq -o=shell '.' $HOME/.config/alacritty/themes/aliases.toml)
+  eval $(yq -o=shell '.' ${alacrittyDir}/themes/aliases.toml)
+
   prefix="aliases_"
   lookup="${prefix}${userInput}";
   [ -v $lookup ] && themeName="${!lookup}"
@@ -58,7 +53,7 @@ alacritty-use-theme() {
   else
 	  if ([ -n "$userInput" ] && [ ! -f ${alacrittyDir}/themes/themes/${userInput}.toml ]) && [ -z $themeName ]; then
 	      echo -e "Theme:'${userInput}' was not found in ${alacrittyDir}/themes/themes/"
-	fi
+	  fi
     ln -sf ${scriptDir}/selected.toml.DEFAULT ${alacrittyDir}/themes/selected.toml
   fi
 
